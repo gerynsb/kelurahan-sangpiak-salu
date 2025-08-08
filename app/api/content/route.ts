@@ -157,6 +157,17 @@ const fallbackData = {
 
 export async function GET() {
   try {
+    // Check if MongoDB is available
+    if (!clientPromise) {
+      console.log("⚠️ MongoDB not configured, using fallback data");
+      return new Response(JSON.stringify(fallbackData), { 
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+    }
+
     console.log('🔍 Connecting to MongoDB Atlas...');
     const client = await clientPromise;
     const db = client.db(process.env.MONGODB_DB);
@@ -215,6 +226,17 @@ export async function GET() {
 export async function PATCH(req: Request) {
   try {
     const body = await req.json();
+
+    // Check if MongoDB is available
+    if (!clientPromise) {
+      console.log("⚠️ MongoDB not configured, simulating update success");
+      return new Response(JSON.stringify({ message: "Update simulated (MongoDB not configured)", modifiedCount: 1 }), { 
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+    }
 
     const client = await clientPromise;
     const db = client.db(process.env.MONGODB_DB);

@@ -449,7 +449,7 @@ export default function Home() {
                     onClick={() => scrollToSection('about')}
                     className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl"
                   >
-                    PROFIL Kelurahan
+                    PROFIL DESA
                   </button>
                   <button
                     onClick={() => scrollToSection('hubungi-section')}
